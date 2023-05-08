@@ -24,29 +24,31 @@
     </tbody>
   </table>
   
-  <div *ngIf="selectedEmployee">
-    <h2>Edit Employee</h2>
-    <form (ngSubmit)="submitEditForm()">
-      <div>
-        <label for="firstName">First Name:</label>
-        <input id="firstName" [(ngModel)]="selectedEmployee.employeeFirstName" name="employeeFirstName" required>
-      </div>
-      <div>
-        <label for="lastName">Last Name:</label>
-        <input id="lastName" [(ngModel)]="selectedEmployee.employeeLasttName" name="employeeLastName" required>
-      </div>
-      <div>
-        <label for="phone">Phone:</label>
-        <input id="phone" [(ngModel)]="selectedEmployee.employeePhone" name="employeePhone" required>
-      </div>
-      <div>
-        <label for="department">Department:</label>
-        <select id="department" [(ngModel)]="selectedEmployee.department.id" name="department" required>
-          <option *ngFor="let d of departments" [value]="d.id">{{ d.departmentName  }}</option>
-        </select>
-      </div>
-      <button type="submit">Save Changes</button>
-      <button type="button" (click)="closeEditForm()">Cancel</button>
-    </form>
+  <div *ngIf="selectedEmployee" class="card">
+    <h2 class="card-header">Edit Employee</h2>
+    <div class="card-body">
+      <form (ngSubmit)="submitEditForm()">
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input id="firstName" [(ngModel)]="selectedEmployee.employeeFirstName" name="employeeFirstName" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input id="lastName" [(ngModel)]="selectedEmployee.employeeLasttName" name="employeeLastName" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input id="phone" [(ngModel)]="selectedEmployee.employeePhone" name="employeePhone" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="department">Department:</label>
+          <select id="department" [(ngModel)]="selectedEmployee.department.id" name="department" required class="form-control">
+            <option *ngFor="let d of departments" [value]="d.id">{{ d.departmentName  }}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="button" (click)="closeEditForm()" class="btn btn-secondary">Cancel</button>
+      </form>
+    </div>
   </div>
   

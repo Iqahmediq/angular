@@ -52,12 +52,13 @@ export class ListComponent implements OnInit {
         (data) => {
           console.log(data);
           
-          // Close the edit form and update the employee in the list
           this.closeEditForm();
           const index = this.listEmployees.findIndex(e => e.id === this.selectedEmployee.id);
           if (index !== -1) {
             this.listEmployees[index] = data;
           }
+          this.empService.getEmployees().subscribe((data) => {
+            this.departments = data;  });
         },
         (err) => console.log(err)
       );
@@ -65,13 +66,10 @@ export class ListComponent implements OnInit {
   
 
   deleteEmployee(employee: any): void {
-    // Ask the user for confirmation
     if (confirm('Are you sure you want to delete this employee?')) {
-      // Send a DELETE request to the API endpoint to delete the employee
       this.empService.deleteEmployee(employee.id).subscribe(
         () => {
           console.log('Employee deleted successfully');
-          // Remove the deleted employee from the listEmployees array
           const index = this.listEmployees.indexOf(employee);
           if (index !== -1) {
             this.listEmployees.splice(index, 1);

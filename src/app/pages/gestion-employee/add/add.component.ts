@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from 'src/app/services/department.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService } from '../../../services/employee.service';
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -33,6 +34,7 @@ get f() {
 }
 submit(): void{
     this.employeeService.postEmployees(this.formEmployee.value).subscribe(data => {
+      window.location.reload();
     console.log(this.formEmployee.value);},err =>{
     console.log(err)
     });
